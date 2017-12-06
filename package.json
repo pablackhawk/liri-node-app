@@ -1,0 +1,26 @@
+{
+  "name": "liri-node-lt",
+  "version": "1.0.0",
+  "description": "Package for the Liri app for the node.js homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablackhawk/liri-node-app.git"
+  },
+  "author": "Laurentius Tirtarahardja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pablackhawk/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/pablackhawk/liri-node-app#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "fetch": "^1.1.0",
+    "request": "^2.83.0",
+    "spotify": "^0.3.0",
+    "twitter": "^1.7.1"
+  }
+}
