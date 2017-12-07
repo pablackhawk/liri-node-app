@@ -1,8 +1,6 @@
 // Dependencies
 var keys = require('./keys.js')
 var twitter = require('twitter')
-var spotify = require('spotify')
-var request = require('request')
 var fetch = require('node-fetch')
 var fs = require('fs')
 // User Input capture and instructions
@@ -66,26 +64,56 @@ function fetchTweets () {
   })
 }
 function spotifyMe () {
-  console.log('--------------------')
-  console.log('Here is some music for you!')
-  var searchTrack
-  if (searchTerm === undefined) {
-    searchTrack = "What's My Age Again?"
+  if (searchTerm !== undefined) {
+    var spotify = require('spotify')
+
+    spotify.search({
+      type: 'track',
+      query: searchTerm + '&limit=1&'
+    }, function (error, data) {
+      if (error) {
+        console.log('Error occurred: ' + error)
+        return
+      }
+      console.log('---------------------------------------------------')
+      console.log(' ')
+      console.log('The song you entered was ' + searchTerm + '.')
+      console.log(' ')
+      console.log('Here is the information you requested!')
+      console.log(' ')
+      console.log('Track Title: ' + data.tracks.items[0].name)
+      console.log(' ')
+      console.log('Artist Name: ' + data.tracks.items[0].artists[0].name)
+      console.log(' ')
+      console.log('Preview URL: ' + data.tracks.items[0].preview_url)
+      console.log(' ')
+      console.log('---------------------------------------------------')
+    })
   } else {
-    searchTrack = searchTerm
+    var spotify = require('spotify')
+
+    spotify.search({
+      type: 'track',
+      query: 'ace+of+base+sign' + '&limit=1&'
+    }, function (error, data) {
+      if (error) {
+        console.log('Error occurred: ' + error)
+        return
+      }
+        // DO SOMETHING WITH 'data'
+      console.log('---------------------------------------------------')
+      console.log(' ')
+      console.log("Since you didn't enter a song here is the following: ")
+      console.log(' ')
+      console.log('Track Title: ' + data.tracks.items[0].name)
+      console.log(' ')
+      console.log('Artist Name: ' + data.tracks.items[0].artists[0].name)
+      console.log(' ')
+      console.log('Preview URL: ' + data.tracks.items[0].preview_url)
+      console.log(' ')
+      console.log('---------------------------------------------------')
+    })
   }
-  spotify.search({type: 'track', query: searchTrack}, function (err, data) {
-    if (err) {
-      console.log('Error occurred: ' + err)
-      console.log('--------------------')
-    } else {
-      console.log('Artist: ' + data.tracks.items[0].artists[0].name)
-      console.log('Song: ' + data.tracks.items[0].name)
-      console.log('Album: ' + data.tracks.items[0].album.name)
-      console.log('Preview Here:' + data.tracks.items[0].preview_url)
-      console.log('--------------------')
-    }
-  })
 }
 function movieMe () {
   console.log('--------------------')

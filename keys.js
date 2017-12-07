@@ -11,7 +11,8 @@ module.exports = twitterKeys
 
 var spotifyKeys = {
   client_key: 'bf782e382cd740cb9454c7f0f80edcfc',
-  client_secret: '752db995fda0454684c92d0e0df7dc22'
+  client_secret: '752db995fda0454684c92d0e0df7dc22',
+  oAuth_token: 'BQBtUAOdo0K4ioQNXnPWKTQyseAv15qZfNx2vkaLP2GjR'
 }
 
 // module.exports = spotifyKeys
