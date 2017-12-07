@@ -39,7 +39,6 @@ function execute () {
 
 function fetchTweets () {
   console.log('Tweets incoming...')
-  console.log(JSON.stringify(keys))
   var client = new twitter({
     consumer_key: keys.consumer_key,
     consumer_secret: keys.consumer_secret,
@@ -58,7 +57,7 @@ function fetchTweets () {
     } else {
       console.log('--------------------')
       for (var j = 0; j < tweets.length; j++) {
-        var returnedData = ('Number: ' + (j + 1) + '\n' + tweets[j].created_at + '\n' + tweets[j].full_text || tweets[j].tweet.text + '\n')
+        var returnedData = ('Number: ' + (j + 1) + '\n' + tweets[j].created_at + '\n' + tweets[j].full_text || tweets[j].text + '\n')
         console.log(returnedData)
         console.log('--------------------')
       }

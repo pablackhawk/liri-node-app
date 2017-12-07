@@ -14,4 +14,10 @@ var spotifyKeys = {
   client_secret: '752db995fda0454684c92d0e0df7dc22'
 }
 
-module.exports = spotifyKeys
+// module.exports = spotifyKeys
+
+var omdbKey = {
+  apiKey: '64293104'
+}
+
+// module.exports = omdbKey
