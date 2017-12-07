@@ -3,14 +3,15 @@ var keys = require('./keys.js')
 var twitter = require('twitter')
 var spotify = require('spotify')
 var request = require('request')
+var fetch = require('node-fetch')
 var fs = require('fs')
 // User Input capture and instructions
 console.log('Welcome to Liri!')
 console.log('Available Commands:')
-console.log('my-tweets')
-console.log('spotify-this-song')
-console.log('movie-this')
-console.log('do-what-it-says')
+console.log('* my-tweets')
+console.log('* spotify-this-song')
+console.log('* movie-this')
+console.log('* do-what-it-says')
 var action = process.argv[2]
 var searchTerm = process.argv[3]
 for (var i = 4; i < process.argv.length; i++) {
@@ -95,25 +96,23 @@ function movieMe () {
   } else {
     searchMovie = searchTerm
   }
-  var url = 'https://www.omdbapi.com/?t=' + searchMovie + '&y=&plot=long&tomatoes=true&r=json'
-  request(url, function (error, response, body) {
-    var movieResponse = JSON.parse(body)
-    if (!error && response.statusCode === 200) {
-      console.log('Title: ' + movieResponse['Title'])
-      console.log('Year: ' + movieResponse['Year'])
-      console.log('IMDB Rating: ' + movieResponse['imdbRating'])
-      console.log('Country: ' + movieResponse['Country'])
-      console.log('Language: ' + movieResponse['Language'])
-      console.log('Plot: ' + movieResponse['Plot'])
-      console.log('Actors: ' + movieResponse['Actors'])
-      console.log('Rotten Tomatoes Rating: ' + movieResponse['tomatoRating'])
-      console.log('Rotten Tomatoes URL: ' + movieResponse['tomatoURL'])
-      console.log('--------------------')
-    } else if (error) {
-      console.log(error)
-      console.log('--------------------')
-    }
+  fetch('https://www.omdbapi.com/?t=' + searchMovie + '&y=&plot=long&tomatoes=true&apikey=64293104').then(
+  response => response.json().then(json => {
+    console.log('Title: ' + json['Title'])
+    console.log('Year: ' + json['Year'])
+    console.log('IMDB Rating: ' + json['imdbRating'])
+    console.log('Country: ' + json['Country'])
+    console.log('Language: ' + json['Language'])
+    console.log('Plot: ' + json['Plot'])
+    console.log('Actors: ' + json['Actors'])
+    console.log('Rotten Tomatoes Rating: ' + json['tomatoRating'])
+    console.log('Rotten Tomatoes URL: ' + json['tomatoURL'])
+    console.log('--------------------')
+  }).catch(error => {
+    console.log(error)
+    console.log('--------------------')
   })
+  )
 }
 function followTheBook () {
   console.log('--------------------')
