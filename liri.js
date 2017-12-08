@@ -1,8 +1,9 @@
 // Dependencies
-var keys = require('./keys.js')
-var twitter = require('twitter')
-var fetch = require('node-fetch')
-var fs = require('fs')
+let keys = require('./keys.js')
+const twitter = require('twitter')
+const spotify = require('node-spotify-api')
+const fetch = require('node-fetch')
+const fs = require('fs')
 // User Input capture and instructions
 console.log('Welcome to Liri!')
 console.log('Available Commands:')
@@ -10,9 +11,9 @@ console.log('* my-tweets')
 console.log('* spotify-this-song')
 console.log('* movie-this')
 console.log('* do-what-it-says')
-var action = process.argv[2]
-var searchTerm = process.argv[3]
-for (var i = 4; i < process.argv.length; i++) {
+let action = process.argv[2]
+let searchTerm = process.argv[3]
+for (let i = 4; i < process.argv.length; i++) {
   searchTerm += '+' + process.argv[i]
 }
 
@@ -38,13 +39,13 @@ function execute () {
 
 function fetchTweets () {
   console.log('Tweets incoming...')
-  var client = new twitter({
-    consumer_key: keys.consumer_key,
-    consumer_secret: keys.consumer_secret,
-    access_token_key: keys.access_token_key,
-    access_token_secret: keys.access_token_secret
+  let client = new twitter({
+    consumer_key: keys.twitterKeys.consumer_key,
+    consumer_secret: keys.twitterKeys.consumer_secret,
+    access_token_key: keys.twitterKeys.access_token_key,
+    access_token_secret: keys.twitterKeys.access_token_secret
   })
-  var parameters = {
+  let parameters = {
     screen_name: 'belowdecks_sot',
     count: 20,
     exclude_replies: true,
@@ -55,8 +56,8 @@ function fetchTweets () {
       console.log('An error occurred: ' + error)
     } else {
       console.log('--------------------')
-      for (var j = 0; j < tweets.length; j++) {
-        var returnedData = ('Number: ' + (j + 1) + '\n' + tweets[j].created_at + '\n' + tweets[j].full_text || tweets[j].text + '\n')
+      for (let j = 0; j < tweets.length; j++) {
+        let returnedData = ('Number: ' + (j + 1) + '\n' + tweets[j].created_at + '\n' + tweets[j].full_text || tweets[j].text + '\n')
         console.log(returnedData)
         console.log('--------------------')
       }
@@ -64,67 +65,45 @@ function fetchTweets () {
   })
 }
 function spotifyMe () {
-  if (searchTerm !== undefined) {
-    var spotify = require('spotify')
-
-    spotify.search({
-      type: 'track',
-      query: searchTerm + '&limit=1&'
-    }, function (error, data) {
-      if (error) {
-        console.log('Error occurred: ' + error)
-        return
-      }
-      console.log('---------------------------------------------------')
-      console.log(' ')
-      console.log('The song you entered was ' + searchTerm + '.')
-      console.log(' ')
-      console.log('Here is the information you requested!')
-      console.log(' ')
-      console.log('Track Title: ' + data.tracks.items[0].name)
-      console.log(' ')
-      console.log('Artist Name: ' + data.tracks.items[0].artists[0].name)
-      console.log(' ')
-      console.log('Preview URL: ' + data.tracks.items[0].preview_url)
-      console.log(' ')
-      console.log('---------------------------------------------------')
-    })
+  let spotifySearch = new spotify({
+    id: keys.spotifyKeys.client_key,
+    secret: keys.spotifyKeys.client_secret
+  })
+  console.log('--------------------')
+  console.log("Let's play that music!")
+  let searchSong
+  if (searchTerm === undefined) {
+    searchSong = 'The Sign'
   } else {
-    var spotify = require('spotify')
-
-    spotify.search({
-      type: 'track',
-      query: 'ace+of+base+sign' + '&limit=1&'
-    }, function (error, data) {
-      if (error) {
-        console.log('Error occurred: ' + error)
-        return
-      }
-        // DO SOMETHING WITH 'data'
-      console.log('---------------------------------------------------')
-      console.log(' ')
-      console.log("Since you didn't enter a song here is the following: ")
-      console.log(' ')
-      console.log('Track Title: ' + data.tracks.items[0].name)
-      console.log(' ')
-      console.log('Artist Name: ' + data.tracks.items[0].artists[0].name)
-      console.log(' ')
-      console.log('Preview URL: ' + data.tracks.items[0].preview_url)
-      console.log(' ')
-      console.log('---------------------------------------------------')
-    })
+    searchSong = searchTerm
   }
+  spotifySearch.search({ type: 'track', query: searchSong }, function (err, data) {
+    if (err) {
+      console.log('An error has occurred: ' + err)
+    } else {
+      console.log("This is the top result I've found for that search:")
+      let response = data.tracks.items
+      console.log('Track Title: ' + response[0].name)
+      console.log('Artist: ' + response[0].artists[0].name)
+      if (response[0].preview_url === null) {
+        console.log('Preview: No preview available')
+      } else {
+        console.log('Preview: ' + response[0].preview_url)
+      }
+      console.log('--------------------')
+    }
+  })
 }
 function movieMe () {
   console.log('--------------------')
   console.log("Let's go to the movies!")
-  var searchMovie
+  let searchMovie
   if (searchTerm === undefined) {
     searchMovie = 'Mr. Nobody'
   } else {
     searchMovie = searchTerm
   }
-  fetch('https://www.omdbapi.com/?t=' + searchMovie + '&y=&plot=long&tomatoes=true&apikey=64293104').then(
+  fetch('https://www.omdbapi.com/?t=' + searchMovie + '&y=&plot=long&tomatoes=true&apikey=' + keys.omdbKey.apiKey).then(
   response => response.json().then(json => {
     console.log('Title: ' + json['Title'])
     console.log('Year: ' + json['Year'])
@@ -149,14 +128,14 @@ function followTheBook () {
     if (error) {
       console.log(error)
     } else {
-      var dataArr = data.split(', ')
-      action = dataArr[0]
+      let dataArr = data.split(', ')
       searchTerm = dataArr[1]
-      for (var k = 0; k < dataArr.length; k++) {
-        searchTerm = searchTerm + '+' + dataArr[i]
+      for (let k = 0; k < dataArr.length; k++) {
+        searchTerm = searchTerm + ' ' + dataArr[k]
       }
+      spotifyMe()
     }
-    execute()
+    // execute()
   })
 }
 execute()

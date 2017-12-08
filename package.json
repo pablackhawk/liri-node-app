@@ -17,10 +17,9 @@
   },
   "homepage": "https://github.com/pablackhawk/liri-node-app#readme",
   "dependencies": {
-    "axios": "^0.17.1",
     "node-fetch": "^1.7.3",
+    "node-spotify-api": "^1.0.7",
     "request": "^2.83.0",
-    "spotify": "^0.3.0",
     "twitter": "^1.7.1"
   }
 }
