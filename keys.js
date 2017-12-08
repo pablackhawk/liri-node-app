@@ -6,13 +6,10 @@ const apiKeys = {
     access_token_secret: 'MInU2zDiHlTdXlRsoWOBgcx7829JM3CyO9ITBHd8UjQBy'
   },
 
-
   spotifyKeys: {
     client_key: 'bf782e382cd740cb9454c7f0f80edcfc',
-    client_secret: '752db995fda0454684c92d0e0df7dc22',
-    oAuth_token: 'BQBtUAOdo0K4ioQNXnPWKTQyseAv15qZfNx2vkaLP2GjR'
+    client_secret: '752db995fda0454684c92d0e0df7dc22'
   },
-
 
   omdbKey: {
     apiKey: '64293104'

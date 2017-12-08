@@ -85,6 +85,7 @@ function spotifyMe () {
       let response = data.tracks.items
       console.log('Track Title: ' + response[0].name)
       console.log('Artist: ' + response[0].artists[0].name)
+      console.log('Album: ' + data.tracks.items[0].album.name)
       if (response[0].preview_url === null) {
         console.log('Preview: No preview available')
       } else {
@@ -124,18 +125,16 @@ function movieMe () {
 function followTheBook () {
   console.log('--------------------')
   console.log('Opening the book...')
-  fs.readFile('random.txt', 'utf8', function (error, data) {
+  fs.readFile('./random.txt', 'utf8', function (error, data) {
     if (error) {
       console.log(error)
     } else {
       let dataArr = data.split(', ')
+      action = dataArr[0]
       searchTerm = dataArr[1]
-      for (let k = 0; k < dataArr.length; k++) {
-        searchTerm = searchTerm + ' ' + dataArr[k]
-      }
-      spotifyMe()
+      console.log(dataArr[1])
     }
-    // execute()
+    execute()
   })
 }
 execute()
