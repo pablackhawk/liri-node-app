@@ -125,9 +125,9 @@ function movieMe () {
 function followTheBook () {
   console.log('--------------------')
   console.log('Opening the book...')
-  fs.readFile('./random.txt', 'utf8', function (error, data) {
-    if (error) {
-      console.log(error)
+  fs.readFile('./random.txt', 'utf8', function (err, data) {
+    if (err) {
+      console.log('An error occurred: ' + err)
     } else {
       let dataArr = data.split(', ')
       action = dataArr[0]
