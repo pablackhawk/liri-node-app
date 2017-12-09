@@ -86,7 +86,7 @@ inquirer.prompt([
       } else {
         console.log('--------------------')
         for (let j = 0; j < tweets.length; j++) {
-          let twitterData = ('Number: ' + (j + 1) + '\n' + tweets[j].created_at + '\n' + tweets[j].full_text || tweets[j].text + '\n')
+          let twitterData = ('Tweet Number: ' + (j + 1) + '\n' + tweets[j].created_at + '\n' + tweets[j].full_text || tweets[j].text + '\n')
           console.log(twitterData)
           console.log('--------------------')
           log(twitterData)
