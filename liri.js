@@ -57,9 +57,10 @@ function fetchTweets () {
     } else {
       console.log('--------------------')
       for (let j = 0; j < tweets.length; j++) {
-        let returnedData = ('Number: ' + (j + 1) + '\n' + tweets[j].created_at + '\n' + tweets[j].full_text || tweets[j].text + '\n')
-        console.log(returnedData)
+        let twitterData = ('Number: ' + (j + 1) + '\n' + tweets[j].created_at + '\n' + tweets[j].full_text || tweets[j].text + '\n')
+        console.log(twitterData)
         console.log('--------------------')
+        log(twitterData)
       }
     }
   })
@@ -81,11 +82,10 @@ function spotifyMe () {
     if (err) {
       console.log('An error has occurred: ' + err)
     } else {
-      console.log("This is the top result I've found for that search:")
       let response = data.tracks.items
-      console.log('Track Title: ' + response[0].name)
-      console.log('Artist: ' + response[0].artists[0].name)
-      console.log('Album: ' + data.tracks.items[0].album.name)
+      let spotifyData = ('This is the top result I\'ve found for that search\n' + 'Track Title: ' + response[0].name + '\n' + 'Artist: ' + response[0].artists[0].name + '\n' + 'Album: ' + response[0].album.name)
+      console.log(spotifyData)
+      log(spotifyData)
       if (response[0].preview_url === null) {
         console.log('Preview: No preview available')
       } else {
@@ -106,16 +106,10 @@ function movieMe () {
   }
   fetch('https://www.omdbapi.com/?t=' + searchMovie + '&y=&plot=long&tomatoes=true&apikey=' + keys.omdbKey.apiKey).then(
   response => response.json().then(json => {
-    console.log('Title: ' + json['Title'])
-    console.log('Year: ' + json['Year'])
-    console.log('IMDB Rating: ' + json['imdbRating'])
-    console.log('Country: ' + json['Country'])
-    console.log('Language: ' + json['Language'])
-    console.log('Plot: ' + json['Plot'])
-    console.log('Actors: ' + json['Actors'])
-    console.log('Rotten Tomatoes Rating: ' + json['tomatoRating'])
-    console.log('Rotten Tomatoes URL: ' + json['tomatoURL'])
+    let movieData = ('Title: ' + json['Title'] + '\n' + 'Year: ' + json['Year'] + '\n' + 'IMDB Rating: ' + json['imdbRating'] + '\n' + 'Country: ' + json['Country'] + '\n' + 'Language: ' + json['Language'] + '\n' + 'Plot: ' + json['Plot'] + '\n' + 'Actors: ' + json['Actors'] + '\n' + 'Rotten Tomatoes Rating: ' + json['tomatoRating'] + '\n' + 'Rotten Tomatoes URL: ' + json['tomatoURL'])
+    console.log(movieData)
     console.log('--------------------')
+    log(movieData)
   }).catch(error => {
     console.log(error)
     console.log('--------------------')
@@ -135,6 +129,13 @@ function followTheBook () {
       console.log(dataArr[1])
     }
     execute()
+  })
+}
+function log (logResults) {
+  fs.appendFile('log.txt', logResults, err => {
+    if (err) {
+      throw err
+    }
   })
 }
 execute()
