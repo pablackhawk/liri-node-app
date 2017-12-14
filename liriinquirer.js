@@ -167,4 +167,5 @@ inquirer.prompt([
       }
     })
   }
+  execute()
 })
