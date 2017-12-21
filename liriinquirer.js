@@ -1,7 +1,7 @@
 // Dependencies
 let keys = require('./keys.js')
-const twitter = require('twitter')
-const spotify = require('node-spotify-api')
+const Twitter = require('twitter')
+const Spotify = require('node-spotify-api')
 const fetch = require('node-fetch')
 var inquirer = require('inquirer')
 const fs = require('fs')
@@ -68,7 +68,7 @@ inquirer.prompt([
 
   function fetchTweets () {
     console.log('Tweets incoming...')
-    let client = new twitter({
+    let client = new Twitter({
       consumer_key: keys.twitterKeys.consumer_key,
       consumer_secret: keys.twitterKeys.consumer_secret,
       access_token_key: keys.twitterKeys.access_token_key,
@@ -95,7 +95,7 @@ inquirer.prompt([
     })
   }
   function spotifyMe () {
-    let spotifySearch = new spotify({
+    let spotifySearch = new Spotify({
       id: keys.spotifyKeys.client_key,
       secret: keys.spotifyKeys.client_secret
     })
