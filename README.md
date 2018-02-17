@@ -21,14 +21,22 @@ Technology used:
 
 3. Clone the repo using `git clone https://github.com/pablackhawk/liri-node-app.git`
 
-4. Navigate to the repo using `cd liri-node-app`
+4. Navigate to the repo using
 
-5. Install required node packages with `npm install`
+`cd liri-node-app`
 
-6. Start the application with `npm start`
+5. Install required node packages with
+
+`npm install`
+
+6. Start the application with
+
+`npm start`
 
 7. Follow the prompts!
 
-8. If you want to run the app again, re-enter `npm start`
+8. If you want to run the app again, re-enter
+
+`npm start`
 
 Copyright Laurentius Tirtarahardja 2017
