@@ -1,10 +1,11 @@
 {
   "name": "liri-node-lt",
   "version": "1.0.0",
-  "description": "Package for the Liri app for the node.js homework",
+  "description": "A Command Line digital assistant!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node liriinquirer.js"
   },
   "repository": {
     "type": "git",
