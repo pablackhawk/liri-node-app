@@ -19,7 +19,9 @@ Technology used:
 
 2. Navigate to where you would like to create the app
 
-3. Clone the repo using `git clone https://github.com/pablackhawk/liri-node-app.git`
+3. Clone the repo using
+
+`git clone https://github.com/pablackhawk/liri-node-app.git`
 
 4. Navigate to the repo using
 
