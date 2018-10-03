@@ -134,4 +134,20 @@ Language: English
 Plot: Spending the summer at a Catskills resort with her family, Frances "Baby" Houseman falls in love with the camp's dance instructor, Johnny Castle.
 Actors: Jennifer Grey, Patrick Swayze, Jerry Orbach, Cynthia Rhodes
 Rotten Tomatoes Rating: N/A
-Rotten Tomatoes URL: http://www.rottentomatoes.com/m/dirty_dancing/
+Rotten Tomatoes URL: http://www.rottentomatoes.com/m/dirty_dancing/Title: Swat
+Year: 2014
+IMDB Rating: N/A
+Country: UK
+Language: English
+Plot: An armed Eastern European fugitive has broken into a chemical research lab and has taken two scientists hostage. He is in the middle of transferring some extremely classified chemical ...
+Actors: Michael Beech, James Booth, Alex Gregson, Conor Hanifin
+Rotten Tomatoes Rating: N/A
+Rotten Tomatoes URL: N/ATitle: S.W.A.T.
+Year: 2003
+IMDB Rating: 6.0
+Country: USA
+Language: English, Spanish, French
+Plot: An imprisoned drug kingpin offers a huge cash reward to anyone that can break him out of police custody and only the LAPD's Special Weapons and Tactics team can prevent it.
+Actors: Samuel L. Jackson, Colin Farrell, Michelle Rodriguez, LL Cool J
+Rotten Tomatoes Rating: N/A
+Rotten Tomatoes URL: http://www.rottentomatoes.com/m/swat/
