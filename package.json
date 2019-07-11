@@ -20,7 +20,7 @@
   "dependencies": {
     "inquirer": "^4.0.2",
     "node-fetch": "^1.7.3",
-    "node-spotify-api": "^1.0.7",
+    "node-spotify-api": "^1.1.1",
     "request": "^2.88.0",
     "twitter": "^1.7.1"
   }
